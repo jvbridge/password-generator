@@ -106,6 +106,6 @@ function getLength(){
 function randomChar(charList){
   rand = Math.random() * charList.length;
   rand = Math.floor(rand);
-  return charList.scharAt(rand);
+  return charList.charAt(rand);
 }
 
