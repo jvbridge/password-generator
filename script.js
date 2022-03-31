@@ -17,7 +17,7 @@ generateBtn.addEventListener("click", writePassword);
 function generatePassword(){
   // get the length of the password and send errors for bad input
   var len = getLength();
-  if (len == 0) {
+  if (len == 0 || isNaN(len)) {
     alert("invalid length chosen, try again!");
     return generatePassword();
   }
