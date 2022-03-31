@@ -41,7 +41,7 @@ function generatePassword(){
   if (lowerCase){
     pickList = pickList + lowerCaseList;
   }
-  if (upperCaseList) {
+  if (upperCase) {
     pickList = pickList + upperCaseList;
   }
   if (numeric){
