@@ -4,6 +4,8 @@ This page generates passwords given rudamentary parameters.
 
 It prompts the user to answer some questions about the type of password, after which it displays a password that satisfies the criteria 
 
+currently hosted at https://jvbridge.github.io/password-generator/
+
 ## Usage 
 
 Simply click "Generate password" and follow the prompts that are given in English.
