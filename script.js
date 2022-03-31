@@ -17,16 +17,16 @@ generateBtn.addEventListener("click", writePassword);
 function generatePassword(){
   // get the length of the password and send errors for bad input
   var len = getLength();
-  if (!len) {
-    alert("invalid length chosen, using default password");
-    return "password";
+  if (len == 0) {
+    alert("invalid length chosen, try again!");
+    return generatePassword();
   }
 
   // booleans for things to confirm
   var lowerCase = confirm("Include lower case characters?");
   var upperCase = confirm("Include upper case characters?");
   var numeric = confirm("include numbers?");
-  var special = confirm("include special characters such as , . ! @ and others?");
+  var special = confirm("include special characters such as \",.!@\"?");
 
   // lists of valid characters
   var upperCaseList = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
@@ -35,7 +35,7 @@ function generatePassword(){
   var specialList = "!@#$%^&*()-_=+,<.>/?";
 
   // list of characters the user decided on
-  var pickList = [];
+  var pickList = "";
 
   // add in the lists as appropriate
   if (lowerCase){
@@ -53,8 +53,8 @@ function generatePassword(){
 
   // check to see if any were chosen
   if (pickList.length == 0) {
-    alert("no characters are chosen! Useing default password");
-    return "password";
+    alert("no characters are chosen! Try again!");
+    return generatePassword();
   }
 
   // password string to return
@@ -62,8 +62,8 @@ function generatePassword(){
 
   // adds a number of characters to ret equal to len
   for (var i = 0; i < len; i++){
-    // gets a random character from picklist[]
-    var randChar = pickList.charAt(Math.floor(Math.random() * pickList.length))
+    // gets a random character from pickList
+    var randChar = randomChar(pickList);
     // adds it to ret
     ret = ret + randChar;
   }
@@ -73,29 +73,39 @@ function generatePassword(){
 
 /**
  * Gets the length of the password and returns it.
- * Returns false if input is invalid or if there's no input
- * @returns number, false 
+ * Returns 0 if input is invalid or if there's no input
+ * @returns {number}
  */
 function getLength(){
   var input = prompt("Give me a length from 5 to 128!");
   if (!input){
     alert("no input detected");
-    return false;
+    return 0;
   }
 
   inputInt = parseInt(input);
 
   if (input < 5) {
     alert("input too small!");
-    return false;
+    return 0;
   }
 
   if (input > 128){
     alert ("input too big");
-    return false;
+    return 0;
   }
 
   return inputInt;
 }
 
+/**
+ * Takes a list of characters and returns a random one from it
+ * @param {string} charList 
+ * @returns {char}
+ */
+function randomChar(charList){
+  rand = Math.random() * charList.length;
+  rand = Math.floor(rand);
+  return charList.scharAt(rand);
+}
 
